@@ -20,8 +20,8 @@ app.listen(3000, function () {
   });
   
 var processes = processWindows.getProcesses(function(err, processes){
-	processes.forEach(function (p){
 	console.log("no focus")
+	processes.forEach(function (p){
 		//console.log("pidToString: " + p.pid.toString());
 		//console.log("mainWindowTitle: " + p.mainWindowTitle);
 		//console.log("processName: " + p.processName); processName: 'Calculator'
@@ -29,8 +29,8 @@ var processes = processWindows.getProcesses(function(err, processes){
 		  console.log(p)
 	});
 
+	console.log("si focus")
 	processes.forEach(function (p){
-		console.log("si focus")
 		//console.log("pidToString: " + p.pid.toString());
 		//console.log("mainWindowTitle: " + p.mainWindowTitle);
 		//console.log("processName: " + p.processName); processName: 'Calculator'
@@ -41,7 +41,7 @@ var processes = processWindows.getProcesses(function(err, processes){
 	//console.log((getProcess(processes,"Calculator")).pid)
 	
 	let found = (getProcess(processes,"ApplicationFrameHost")).pid
-    processWindows.focusWindow(found);
+    processWindows.focusWindow(6724);
 
 	if (getProcess(processes,"Calculator") !== undefined) {
 	  console.log("found")
