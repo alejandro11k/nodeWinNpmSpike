@@ -10,11 +10,46 @@ var processName = "nw-loader"
 var mainWindowTitle = "EXO S.A. | Soluciones Tecnol�gicas"
 //cp.exec(program); // notice this without a callback..
 //process.exit(0); // exit this nodejs process
+const os = require('os');
+console.log('You are running on ', os.platform());
 
 //cp = childProcess.spawnSync(command, ["--url","http://www.google.com"], ["pid"])
 cp = childProcess.spawn(command, ["--url","http://www.google.com"], ["pid"])
 console.log(cp.pid);
 //child_process.exec(cmd,function(error,stdout,stderr){}) 
+
+// foo.js 
+const pathExists = require('path-exists');
+ 
+pathExists('app.js').then(exists => {
+    console.log('exists ' + exists);
+    //=> true 
+});
+
+pathExists(command).then(exists => {
+    console.log('exists c ' + exists);
+    //=> true 
+});
+
+var monitor = require('active-window');
+ 
+callback = function(window){
+  try {
+    console.log("App: " + window.app);
+    console.log("Title: " + window.title);
+  }catch(err) {
+      console.log(err);
+  } 
+}
+/*Watch the active window 
+  @callback
+  @number of requests; infinity = -1 
+  @interval between requests
+*/
+//monitor.getActiveWindow(callback,-1,1); 
+ 
+//Get the current active window 
+monitor.getActiveWindow(callback);
 
 var server = require('http').createServer();
 var io = require('socket.io')(server);
