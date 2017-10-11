@@ -50,7 +50,7 @@ function getPid(applicationName) {
 
 function fucusWindow(applicationName) {
     if (os.platform()==='win32') {
-        let pid = get(applicationName);
+        let pid = getPid(applicationName);
         processWindows.focusWindow(pid);
     }
 }
@@ -58,7 +58,8 @@ function fucusWindow(applicationName) {
 //test
 
 let appName = 'nw-loader-google'
-let path = '/home/alejandro/Dev/nw-loader/build/nw-loader/linux64/nw-loader'
+var path = "C:\\Users\\IEUser\\Documents\\nw-loader\\build\\nw-loader\\win64\\nw-loader.exe"
+//let path = '/home/alejandro/Dev/nw-loader/build/nw-loader/linux64/nw-loader'
 let parameter = ['--url','http://www.google.com']
 knowApp(appName,path,parameter)
 console.log(isRunning('nw-loader-google'))
@@ -74,10 +75,18 @@ setTimeout(function () {
 
 setTimeout(function () {
   console.log(getPid('nw-loader-google'))
-}, 9000);
+  fucusWindow('nw-loader-google')
+}, 16000);
 
-setTimeout(finish, 12000);
+setTimeout(kill, 20000);
+function kill() {
+  startedApps[0].process.kill('SIGINT');
+  console.log('kill it!')
+}
+
+setTimeout(finish, 24000);
 function finish() {
+  startedApps[0].process.kill('SIGINT');
   console.log('finish')
 }
 
